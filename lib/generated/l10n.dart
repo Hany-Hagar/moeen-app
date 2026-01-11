@@ -49,6 +49,46 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Storage is full, please free some space and try again`
+  String get storageFullError {
+    return Intl.message(
+      'Storage is full, please free some space and try again',
+      name: 'storageFullError',
+      desc: 'Error message shown when there is no storage space left',
+      args: [],
+    );
+  }
+
+  /// `The app does not have permission to save data`
+  String get permissionDeniedError {
+    return Intl.message(
+      'The app does not have permission to save data',
+      name: 'permissionDeniedError',
+      desc: 'Error message shown when the app lacks necessary permissions',
+      args: [],
+    );
+  }
+
+  /// `Failed to save data`
+  String get saveFailedError {
+    return Intl.message(
+      'Failed to save data',
+      name: 'saveFailedError',
+      desc: 'Error message shown when saving data fails for an unknown reason',
+      args: [],
+    );
+  }
+
+  /// `An unexpected error occurred`
+  String get unknownError {
+    return Intl.message(
+      'An unexpected error occurred',
+      name: 'unknownError',
+      desc: 'Error message shown when an unexpected error occurs',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

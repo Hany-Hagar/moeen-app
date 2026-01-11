@@ -1,1 +1,22 @@
-{}
+{
+    "@@locale": "en",
+
+
+    
+    "storageFullError": "Storage is full, please free some space and try again",
+    "@storageFullError": {
+        "description": "Error message shown when there is no storage space left"
+    },
+    "permissionDeniedError": "The app does not have permission to save data",
+    "@permissionDeniedError": {
+        "description": "Error message shown when the app lacks necessary permissions"
+    },
+    "saveFailedError": "Failed to save data",
+    "@saveFailedError": {
+        "description": "Error message shown when saving data fails for an unknown reason"
+    },
+    "unknownError": "An unexpected error occurred",
+    "@unknownError": {
+        "description": "Error message shown when an unexpected error occurs"
+    }
+}

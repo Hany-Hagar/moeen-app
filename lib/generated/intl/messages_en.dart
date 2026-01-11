@@ -21,5 +21,14 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "permissionDeniedError": MessageLookupByLibrary.simpleMessage(
+            "The app does not have permission to save data"),
+        "saveFailedError":
+            MessageLookupByLibrary.simpleMessage("Failed to save data"),
+        "storageFullError": MessageLookupByLibrary.simpleMessage(
+            "Storage is full, please free some space and try again"),
+        "unknownError":
+            MessageLookupByLibrary.simpleMessage("An unexpected error occurred")
+      };
 }

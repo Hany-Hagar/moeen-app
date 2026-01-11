@@ -1,1 +1,22 @@
-{}
+{
+    "@@locale": "ar",
+
+
+    
+    "storageFullError": "المساحة التخزينية ممتلئة، من فضلك فضي مساحة وحاول مرة أخرى",
+    "@storageFullError": {
+        "description": "رسالة خطأ تظهر عندما لا تتوفر مساحة تخزين كافية"
+    },
+    "permissionDeniedError": "التطبيق لا يمتلك صلاحية الحفظ",
+    "@permissionDeniedError": {
+        "description": "رسالة خطأ تظهر عندما يفتقد التطبيق الصلاحيات اللازمة"
+    },
+    "saveFailedError": "حدث خطأ أثناء حفظ البيانات",
+    "@saveFailedError": {
+        "description": "رسالة خطأ تظهر عندما يفشل حفظ البيانات لسبب غير معروف"
+    },
+    "unknownError": "حدث خطأ غير متوقع",
+    "@unknownError": {
+        "description": "رسالة خطأ تظهر عندما يحدث خطأ غير متوقع"
+    }
+}

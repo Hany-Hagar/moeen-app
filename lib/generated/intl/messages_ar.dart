@@ -21,5 +21,14 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "permissionDeniedError": MessageLookupByLibrary.simpleMessage(
+            "التطبيق لا يمتلك صلاحية الحفظ"),
+        "saveFailedError":
+            MessageLookupByLibrary.simpleMessage("حدث خطأ أثناء حفظ البيانات"),
+        "storageFullError": MessageLookupByLibrary.simpleMessage(
+            "المساحة التخزينية ممتلئة، من فضلك فضي مساحة وحاول مرة أخرى"),
+        "unknownError":
+            MessageLookupByLibrary.simpleMessage("حدث خطأ غير متوقع")
+      };
 }
