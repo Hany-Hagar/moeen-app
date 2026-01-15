@@ -1,31 +1,58 @@
-import 'core/di/service_locator.dart' as di;
 import 'generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'core/di/service_locator.dart' as di;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/settings/cubits/settings_cubit.dart';
+import 'core/settings/cubits/settings_states.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await di.init();
-  runApp(const MyApp());
+  runApp(
+    BlocProvider(
+      create: (context) => di.getIt<SettingsCubit>(),
+      child: const MyApp(),
+    ),
+  );
 }
+
+bool _isSplashRemoved = false;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      buildWhen: (prev, curr) => curr is SettingsLoaded,
+      builder: (context, state) {
+        if (state is SettingsLoaded && !_isSplashRemoved) {
+          Future.microtask(() {
+            FlutterNativeSplash.remove();
+            _isSplashRemoved = true;
+          });
+        }
+
+        final settings = SettingsCubit.get(context).currentSettings;
+
+        return MaterialApp(
+          title: 'Moeen مُعِين',
+          debugShowCheckedModeBanner: false,
+          themeMode: settings.theme,
+          locale: Locale(settings.language),
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          home: const MyHomePage(title: 'مُعِين'),
+        );
+      },
     );
   }
 }
@@ -49,8 +76,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -58,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
     });
   }
 
@@ -99,9 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
+            const Text('Is First time using the app? '),
             Text(
-              '$_counter',
+              '${SettingsCubit.get(context).currentSettings.isFirstTime}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],

@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import '../settings/cubits/settings_cubit.dart';
 import '../services/shared_preferences_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -9,5 +10,9 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferencesService>(
     SharedPreferencesService(sharedPreferences),
+  );
+
+  getIt.registerLazySingleton<SettingsCubit>(
+    () => SettingsCubit(sharedPreferences),
   );
 }
