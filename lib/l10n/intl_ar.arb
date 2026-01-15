@@ -1,1 +1,47 @@
-{}
+{
+    "@@locale": "ar",
+
+
+
+    "appTitle": "مُعِين",
+    "@appTitle": {
+        "description": "عنوان التطبيق"
+    },
+    "skip": "تخطي",
+    "@skip": {
+        "description": "نص زر التخطي في شاشة التوجيه"
+    },
+    "next": "التالي",
+    "@next": {
+        "description": "نص زر التالي في شاشة التوجيه"
+    },
+    "onBoardingTitle1": "مرحبًا بك في مخطط الميزانية",
+    "@onBoardingTitle1": {
+        "description": "عنوان الشاشة الأولى في التوجيه"
+    },
+    "onBoardingSubTitle1": "تحكم في أموالك وادخر من خلال تتبع نفقاتك",
+    "@onBoardingSubTitle1": {
+        "description": "العنوان الفرعي للشاشة الأولى في التوجيه"
+    },
+    "onBoardingTitle2": "وفر المال بسهولة",
+    "@onBoardingTitle2": {
+        "description": "عنوان الشاشة الثانية في التوجيه"
+    },
+    "onBoardingSubTitle2": "قم بإنشاء ميزانيات بسهولة وشاهد اقتراحاتنا بناءً على إنفاقك",
+    "@onBoardingSubTitle2": {
+        "description": "العنوان الفرعي للشاشة الثانية في التوجيه"
+    },
+    "onBoardingTitle3": "تتبع فواتيرك كما لم يحدث من قبل",
+    "@onBoardingTitle3": {
+        "description": "عنوان الشاشة الثالثة في التوجيه"
+    },
+    "onBoardingSubTitle3": "قم بإنشاء ميزانية مخصصة بناءً على دخلك وفواتيرك وأهدافك",
+    "@onBoardingSubTitle3": {
+        "description": "العنوان الفرعي للشاشة الثالثة في التوجيه"
+    },
+    "getStarted": "ابدأ الآن",
+    "@getStarted": {
+        "description": "نص زر ابدأ الآن في شاشة التوجيه"
+    }
+
+}
