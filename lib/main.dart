@@ -4,6 +4,7 @@ import 'core/di/service_locator.dart' as di;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/settings/cubits/settings_cubit.dart';
 import 'core/settings/cubits/settings_states.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'features/splash/presentation/pages/views/splash_view.dart';
@@ -38,20 +39,26 @@ class MyApp extends StatelessWidget {
         }
 
         final settings = SettingsCubit.get(context).currentSettings;
-
-        return MaterialApp(
-          title: 'Moeen مُعِين',
-          debugShowCheckedModeBanner: false,
-          themeMode: settings.theme,
-          locale: Locale(settings.language),
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          home: const SplashView(),
+        return ScreenUtilInit(
+          designSize: const Size(360, 690),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (_, child) {
+            return MaterialApp(
+              title: 'Moeen مُعِين',
+              debugShowCheckedModeBanner: false,
+              themeMode: settings.theme,
+              locale: Locale(settings.language),
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              home: const SplashView(),
+            );
+          },
         );
       },
     );
