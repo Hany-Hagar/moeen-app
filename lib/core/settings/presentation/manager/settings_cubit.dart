@@ -5,8 +5,11 @@ import '../../data/models/user_settings_model.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   final SettingsRepo settingsRepo;
-  SettingsCubit(this.settingsRepo) : super(SettingsInitial()) {
-    settingsRepo
+  SettingsCubit(this.settingsRepo) : super(SettingsInitial());
+
+  void fetchSettings() async {
+    emit(SettingsLoading());
+    await settingsRepo
         .fetchUserSettings()
         .then((settings) {
           emit(SettingsLoaded(settings: settings));
