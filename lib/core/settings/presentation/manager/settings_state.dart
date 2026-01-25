@@ -9,5 +9,7 @@ class SettingsLoading extends SettingsState {}
 class SettingsLoaded extends SettingsState {
   final String? errMsg;
   final UserSettingsModel settings;
+  final themes = ['Light', 'Dark', 'System'];
+  final languages = ['English', 'Arabic'];
   SettingsLoaded({required this.settings, this.errMsg});
 }
