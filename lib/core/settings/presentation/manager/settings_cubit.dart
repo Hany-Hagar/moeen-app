@@ -6,6 +6,7 @@ import '../../data/models/user_settings_model.dart';
 class SettingsCubit extends Cubit<SettingsState> {
   final SettingsRepo settingsRepo;
   SettingsCubit(this.settingsRepo) : super(SettingsInitial());
+  static SettingsCubit get(context) => BlocProvider.of<SettingsCubit>(context);
 
   void fetchSettings() async {
     emit(SettingsLoading());
