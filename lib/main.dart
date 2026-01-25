@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
+import 'core/utils/my_bloc_observer.dart';
+import 'core/di/service_locator.dart' as di;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/settings/presentation/manager/settings_state.dart';
+import 'package:moeen_app/core/settings/presentation/manager/settings_cubit.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  Bloc.observer = MyBlocObserver();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+    return BlocProvider(
+      create: (context) => di.getIt<SettingsCubit>()..fetchSettings(),
+      child: BlocBuilder<SettingsCubit, SettingsState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            themeMode: state is SettingsLoaded
+                ? state.settings.theme
+                : ThemeMode.system,
+            theme: ThemeData.light(),
+            darkTheme: ThemeData.dark(),
+            home: MyHomePage(title: 'Flutter Demo Home Page'),
+          );
+        },
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
