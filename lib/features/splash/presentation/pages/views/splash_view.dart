@@ -1,8 +1,10 @@
 import '../widgets/splash_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/utils/navigator_methods.dart';
 import '../../../../../core/settings/presentation/manager/settings_cubit.dart';
 import '../../../../../core/settings/presentation/manager/settings_state.dart';
+import '../../../../onBoarding/presentation/pages/views/on_boarding_view.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -11,7 +13,9 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SettingsCubit, SettingsState>(
       listener: (context, state) {
-        if (state is SettingsLoaded) {}
+        if (state is SettingsLoaded) {
+          NavTo.pushReplacement(context: context, nextPage: OnBoardingView());
+        }
       },
 
       child: Scaffold(
