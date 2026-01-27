@@ -61,6 +61,21 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/fonts/
+    - assets/lotties/
+  fonts:
+    - family: Lateef
+      fonts:
+        - asset: assets/fonts/Lateef/Lateef-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Lateef/Lateef-Bold.ttf
+          weight: 700
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo/Cairo-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Cairo/Cairo-Bold.ttf
+          weight: 700
 
 flutter_launcher_icons:
   android: "launcher_icon"
