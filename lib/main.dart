@@ -1,8 +1,10 @@
+import 'generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'core/utils/my_bloc_observer.dart';
 import 'core/di/service_locator.dart' as di;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/settings/presentation/manager/settings_state.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'features/splash/presentation/pages/views/splash_view.dart';
 import 'package:moeen_app/core/settings/presentation/manager/settings_cubit.dart';
 
@@ -28,6 +30,17 @@ class MyApp extends StatelessWidget {
                 : ThemeMode.system,
             theme: ThemeData.light(),
             darkTheme: ThemeData.dark(),
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: [
+              S.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: Locale(
+              state is SettingsLoaded ? state.settings.language : 'en',
+            ),
             home: SplashView(),
           );
         },
